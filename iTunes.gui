@@ -1,0 +1,655 @@
+<gui>
+  <properties>
+    <project>iTunes</project>
+    <designer>Arnault Raes</designer>
+    <size>
+      <portrait width="768" height="1024" />
+      <landscape width="1024" height="768" />
+    </size>
+    <imagefolder>
+    </imagefolder>
+    <debug loaderrors="0" connectionerrors="0" />
+    <devices>
+      <device name="iPad">507DA1E85FF622C56C129E9894BDB16B</device>
+    </devices>
+  </properties>
+  <systems>
+    <system name="iTunesPairingServer" ip="0.0.0.0" origin="8090" port="0" protocol="tcp" alwayson="0" accept="1" acceptBroadcasts="0" ssl="0" maxconnections="0" heartbeatRx="" heartbeatTx="" heartbeatMode="-1" eom="" connectionStatus="0" disconnectionStatus="0">
+      <fb name="Pairing Request" regex="GET /pair\?pairingcode=[0-9A-F]+&amp;servicename=[0-9A-F]+ " />
+    </system>
+    <system name="Loopback" ip="127.0.0.1" port="10210" protocol="tcp" alwayson="1" accept="0" acceptBroadcasts="0" ssl="0" maxconnections="0" heartbeatRx="" heartbeatTx="" heartbeatMode="-1" eom="" connectionStatus="0" disconnectionStatus="0">
+      <cmd name="ProgressBar" js="iTunesGUI.setProgress(data)" jsSendsCommand="True">[sliderval]</cmd>
+      <cmd name="LettersSlider" js="iTunesGUI.listSongsSlideTo(data)" jsSendsCommand="False">[sliderval]</cmd>
+    </system>
+  </systems>
+  <themes>
+    <theme type="background" name=".Background"><![CDATA[ background-image: url(backgroud-alugris.png); background-repeat: no-repeat;]]></theme>
+    <theme type="text" name=".CoverAlbum"><![CDATA[ color: Black; font-size: 12px; font-family: 'Arial'; text-align: center; vertical-align: top; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".CoverArtist"><![CDATA[ color: #727272; font-size: 12px; font-family: 'Arial'; text-align: center; vertical-align: top; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".BDDItems"><![CDATA[ color: Black; font-size: 15px; font-family: 'Arial'; text-align: left; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="button" name=".BtnTransparent[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(transparent.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnTransparent[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(transparent.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="gauge" name=".ItemProgress[state='0']"><![CDATA[ background-image: url(bottom_banner_progress_empty.png);]]></theme>
+    <theme type="gauge" name=".ItemProgress[state='1']"><![CDATA[ background-image: url(bottom_banner_progress_full.png);]]></theme>
+    <theme type="text" name=".TimeCurrentPlayRight"><![CDATA[ color: White; font-size: 10px; font-family: 'Arial'; text-align: right; vertical-align: middle; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".TimeCurrentPlayLeft"><![CDATA[ color: White; font-size: 10px; font-family: 'Arial'; text-align: left; vertical-align: middle; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".CurrentPlay"><![CDATA[ color: White; font-size: 13px; font-family: 'Arial'; text-align: left; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="button" name=".BtnSuffle[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-shuffle_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnSuffle[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-shuffle_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnRepeatOff[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-repeat_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnRepeatOff[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-repeat_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnRepeatOn[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-repeat_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnRepeatOn[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-repeat_on.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnRepeatOn1[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-repeat_on_1.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnRepeatOn1[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-repeat_on_1.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnClearSearch[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(search-clearbtn.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnClearSearch[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(search-clearbtn.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="input" name=".SearchInput"><![CDATA[ border-width: 0px; color: Black; font-size: 12px; font-family: 'Arial'; text-align: left; vertical-align: middle; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="button" name=".BtnLargeLeft[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-large-left-unselect.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnLargeLeft[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-large-left-select.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnLargeRight[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-large-right-unselect.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnLargeRight[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-large-right-select.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnLargeMiddle[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-large-midle-unselect.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnLargeMiddle[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-large-midle-select.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnSmallLeft[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-small-left-unselect.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnSmallLeft[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-small-left-select.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnSmallRight[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-small-right-unselect.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnSmallRight[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-small-right-select.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnSmallSolo[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-small-solo-unselect.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnSmallSolo[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-small-solo-select.png); color: White; font-size: 10px; font-family: 'Verdana'; font-weight: bold; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="text" name=".NoLibrary"><![CDATA[ color: #797979; font-size: 20px; font-family: 'Arial'; text-align: center; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="button" name=".Banner_PowerOff[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_power_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Banner_PowerOff[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_power_off.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Banner_Home[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_home.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Banner_Home[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_home.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Banner_Remote[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_remote.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Banner_Remote[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_remote.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Banner_VolumeUp[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_volume_plus.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Banner_VolumeUp[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_volume_plus.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Banner_VolumeDown[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_volume_moins.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Banner_VolumeDown[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_volume_moins.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Banner_Mute[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_volume_mute.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Banner_Mute[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(banner_btn_volume_mute.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="text" name=".BannerActivity"><![CDATA[ color: Black; font-size: 12px; font-family: 'Calibri'; text-align: left; vertical-align: middle; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".BannerDate"><![CDATA[ color: #484848; font-size: 16px; font-family: 'Calibri'; text-align: center; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="button" name=".Transparent[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(transparent.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Transparent[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(transparent.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".AddLibrary[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(library-add.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".AddLibrary[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(library-add.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".LibraryStatus[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(library-notinline.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".LibraryStatus[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(library-inline.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="text" name=".LibraryListName"><![CDATA[ color: Black; font-size: 14px; font-family: 'Arial'; text-align: left; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".LibraryAdd"><![CDATA[ color: Black; font-size: 12px; font-family: 'Arial'; text-align: center; vertical-align: bottom; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="button" name=".BtnPlayPause[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(bottom_banner_btn_play.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnPlayPause[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(bottom_banner_btn_pause.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnForward[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(bottom_banner_btn_forward.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnForward[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(bottom_banner_btn_forward.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnBack[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(bottom_banner_btn_back.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnBack[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(bottom_banner_btn_back.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnCloseGray[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-close-gray.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".BtnCloseGray[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(btn-close-gray.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="text" name=".ShowAlbumTitle"><![CDATA[ color: Gainsboro; font-size: 28px; font-family: 'Arial'; text-align: left; vertical-align: top; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".ShowAlbumArtiste"><![CDATA[ color: Gainsboro; font-size: 20px; font-family: 'Arial'; text-align: left; vertical-align: top; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".ShowAlbumDescr"><![CDATA[ color: White; font-size: 12px; font-family: 'Arial'; text-align: left; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="button" name=".Noir45[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(noir45.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Noir45[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(noir45.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="text" name=".ShowAlbumSong"><![CDATA[ color: #979797; font-size: 12px; font-family: 'Arial'; text-align: left; vertical-align: middle; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".ShowAlbumDuration"><![CDATA[ color: #979797; font-size: 12px; font-family: 'Arial'; text-align: right; vertical-align: middle; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="button" name=".Noir65[state='0']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(noir65.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="button" name=".Noir65[state='1']"><![CDATA[padding: 0px 0px 0px 0px; background-image: url(noir65.png); color: White; font-size: 12px; font-family: 'Verdana'; font-weight: normal; font-style: none; text-decoration: none; text-align: center; vertical-align: middle; display: table-cell; box-sizing: border-box; -webkit-box-sizing: border-box; -webkit-tap-highlight-color:rgba(0,0,0,0);]]></theme>
+    <theme type="text" name=".PlaylistAlbumSong"><![CDATA[ color: #454545; font-size: 12px; font-family: 'Arial'; text-align: left; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".PlaylistAlbumDuration"><![CDATA[ color: #454545; font-size: 12px; font-family: 'Arial'; text-align: right; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".PlaylistAlbumTitle"><![CDATA[ color: #454545; font-size: 12px; font-family: 'Arial'; text-align: left; vertical-align: top; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".PlaylistAlbumArtiste"><![CDATA[ color: #454545; font-size: 12px; font-family: 'Arial'; text-align: left; vertical-align: top; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".SongTitleLetter"><![CDATA[ color: #454545; font-size: 11px; font-family: 'Arial'; text-align: left; vertical-align: middle; font-weight: bold; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="text" name=".SongInfo"><![CDATA[ color: #454545; font-size: 12px; font-family: 'Arial'; text-align: left; vertical-align: middle; font-weight: normal; font-style: none; text-decoration: none; display: table-cell;]]></theme>
+    <theme type="gauge" name=".Letters[state='0']"><![CDATA[ background-image: url(letters.png);]]></theme>
+    <theme type="gauge" name=".Letters[state='1']"><![CDATA[]]></theme>
+  </themes>
+  <tokens>
+    <token name="iTunesPairedServices" value="17E220C0EB42EA1D;Bibliothèque de « Arnault Raes »" persist="1" />
+    <token name="LastServices" value="17E220C0EB42EA1D" persist="1" />
+    <token name="LibraryDisplay" value="Albums" persist="1" />
+  </tokens>
+  <scripts>
+    <script name="CFBigInt.js" />
+    <script name="DAAP.js" />
+    <script name="iTunesServer.js" />
+    <script name="iTunesRemote.js" />
+    <script name="GUI.js" />
+    <script name="main.js" />
+  </scripts>
+  <page name="iTunes" j="0" transition="None" subtype="None" time="0" ease="">
+    <portrait />
+    <landscape t="Background">
+      <subpage name="iTunesMainPage" x="0" y="0" j="100" transition1="None" subtype1="None" time1="0" ease1="" transition2="None" subtype2="None" time2="0" ease2="" clickthrough="0" topmost="0" v="1" l="0" />
+      <subpage name="iTunesNoLibrary" x="0" y="0" j="10" transition1="None" subtype1="None" time1="0" ease1="" transition2="None" subtype2="None" time2="0" ease2="" clickthrough="0" topmost="0" v="0" l="0" />
+      <subpage name="iTunesSearch" x="0" y="0" j="700" transition1="None" subtype1="None" time1="0" ease1="" transition2="None" subtype2="None" time2="0" ease2="" clickthrough="0" topmost="0" v="1" l="0" />
+      <subpage name="iTunesBanner" x="0" y="0" j="800" transition1="None" subtype1="None" time1="0" ease1="" transition2="None" subtype2="None" time2="0" ease2="" clickthrough="0" topmost="0" v="1" l="0" />
+      <subpage name="iTunesCommands" x="0" y="0" j="900" transition1="None" subtype1="None" time1="0" ease1="" transition2="None" subtype2="None" time2="0" ease2="" clickthrough="0" topmost="0" v="1" l="0" />
+      <subpage name="iTunesLibrary" x="0" y="0" j="1000" transition1="None" subtype1="None" time1="0" ease1="" transition2="None" subtype2="None" time2="0" ease2="" clickthrough="0" topmost="0" v="1" l="0" />
+      <subpage name="iTunesLibraryList" x="678" y="125" j="1002" transition1="None" subtype1="None" time1="0" ease1="" transition2="None" subtype2="None" time2="0" ease2="" clickthrough="0" topmost="0" v="1" l="0" />
+      <subpage name="iTunesLibraryEmpty" x="678" y="125" j="1001" transition1="None" subtype1="None" time1="0" ease1="" transition2="None" subtype2="None" time2="0" ease2="" clickthrough="0" topmost="0" v="1" l="0" />
+      <subpage name="iTunesLibraryAdd" x="678" y="125" j="1003" transition1="None" subtype1="None" time1="0" ease1="" transition2="None" subtype2="None" time2="0" ease2="" clickthrough="0" topmost="0" v="1" l="0" />
+      <subpage name="iTunesShowAlbumClose" x="0" y="0" j="1100" transition1="fade" subtype1="None" time1="0" ease1="easeInEaseOut" transition2="fade" subtype2="None" time2="0" ease2="easeInEaseOut" clickthrough="0" topmost="0" v="1" l="0" />
+      <subpage name="iTunesShowAlbum" x="0" y="0" j="1101" transition1="moveIn" subtype1="fromRight" time1="0.5" ease1="easeInEaseOut" transition2="moveIn" subtype2="fromRight" time2="0.5" ease2="easeInEaseOut" clickthrough="0" topmost="0" v="1" l="0" />
+    </landscape>
+  </page>
+  <subpage name="iTunesListCoverAlbumItem" w="802" h="180" clip="1">
+    <img x="645" y="12" w="128" h="128" j="554" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="491" y="12" w="128" h="128" j="544" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="337" y="12" w="128" h="128" j="534" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="183" y="12" w="128" h="128" j="524" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="29" y="12" w="128" h="128" j="514" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="29" y="12" w="128" h="128" j="510" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0" />
+    <img x="183" y="12" w="128" h="128" j="520" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0" />
+    <img x="337" y="12" w="128" h="128" j="530" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0" />
+    <img x="491" y="12" w="128" h="128" j="540" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0" />
+    <img x="645" y="12" w="128" h="128" j="550" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0" />
+    <img x="23" y="6" w="140" h="140" j="515" clickthrough="1" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cover-shadow.png</img>
+    <img x="177" y="6" w="140" h="140" j="525" clickthrough="1" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cover-shadow.png</img>
+    <img x="331" y="6" w="140" h="140" j="535" clickthrough="1" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cover-shadow.png</img>
+    <img x="485" y="6" w="140" h="140" j="545" clickthrough="1" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cover-shadow.png</img>
+    <img x="639" y="6" w="140" h="140" j="555" clickthrough="1" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cover-shadow.png</img>
+    <txt j="511" x="29" y="145" w="128" h="15" t="CoverAlbum" wrap="False" l="0">Album</txt>
+    <txt j="512" x="29" y="160" w="128" h="15" t="CoverArtist" wrap="False" l="0">Artist</txt>
+    <txt j="521" x="183" y="145" w="128" h="15" t="CoverAlbum" wrap="False" l="0">Album</txt>
+    <txt j="522" x="183" y="160" w="128" h="15" t="CoverArtist" wrap="False" l="0">Artist</txt>
+    <txt j="531" x="337" y="145" w="128" h="15" t="CoverAlbum" wrap="False" l="0">Album</txt>
+    <txt j="532" x="337" y="160" w="128" h="15" t="CoverArtist" wrap="False" l="0">Artist</txt>
+    <txt j="541" x="491" y="145" w="128" h="15" t="CoverAlbum" wrap="False" l="0">Album</txt>
+    <txt j="542" x="491" y="160" w="128" h="15" t="CoverArtist" wrap="False" l="0">Artist</txt>
+    <txt j="551" x="645" y="145" w="128" h="15" t="CoverAlbum" wrap="False" l="0">Album</txt>
+    <txt j="552" x="645" y="160" w="128" h="15" t="CoverArtist" wrap="False" l="0">Artist</txt>
+    <btn j="513" x="29" y="12" w="128" h="128" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsAlbum(tokens[&quot;[id]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="523" x="183" y="12" w="128" h="128" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsAlbum(tokens[&quot;[id]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="533" x="337" y="12" w="128" h="128" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsAlbum(tokens[&quot;[id]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="543" x="491" y="11" w="128" h="128" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsAlbum(tokens[&quot;[id]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="553" x="645" y="12" w="128" h="128" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsAlbum(tokens[&quot;[id]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesListBDDItem" w="207" h="48" clip="1">
+    <img x="0" y="0" w="207" h="5" j="413" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">list_separator.png</img>
+    <txt j="411" x="49" y="5" w="158" h="43" t="BDDItems" wrap="False" l="0">Item / Playlist</txt>
+    <img x="5" y="5" w="38" h="43" j="410" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">list_icon_playlist.png</img>
+    <btn j="412" x="0" y="0" w="207" h="48" t="BtnTransparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.selectBDDItem(tokens[&quot;[type]&quot;], tokens[&quot;[id]&quot;],tokens[&quot;[perid]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesSearch" w="1024" h="49" clip="1">
+    <img x="122" y="0" w="780" h="49" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">search-bar.png</img>
+    <btn j="702" x="810" y="12" w="17" h="17" t="BtnClearSearch" flip="None" sim="0" l="0" s="1" js="iTunesGUI.clearSearchField();">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <input j="0" s="701" x="300" y="8" w="499" h="25" pass="0" autoFocus="0" f="0" t="SearchInput" l="0">
+    </input>
+  </subpage>
+  <subpage name="iTunesBanner" w="1024" h="93" clip="1">
+    <img x="0" y="0" w="1024" h="93" j="0" clickthrough="0" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">subbanner_background.png</img>
+    <btn j="804" x="351" y="49" w="108" h="29" t="BtnLargeLeft" flip="None" sim="2" l="0" s="1" js="iTunesGUI.showLibraryBy(&quot;Albums&quot;);">
+      <inactive s="0">Albums</inactive>
+      <active s="0">Albums</active>
+    </btn>
+    <btn j="805" x="458" y="49" w="108" h="29" t="BtnLargeMiddle" flip="None" sim="2" l="0" s="1" js="iTunesGUI.showLibraryBy(&quot;Artists&quot;);">
+      <inactive s="0">Artistes</inactive>
+      <active s="0">Artistes</active>
+    </btn>
+    <btn j="806" x="565" y="49" w="108" h="29" t="BtnLargeRight" flip="None" sim="2" l="0" s="1" js="iTunesGUI.showLibraryBy(&quot;Songs&quot;);">
+      <inactive s="0">Morceaux</inactive>
+      <active s="0">Morceaux</active>
+    </btn>
+    <btn j="801" x="26" y="49" w="41" h="29" t="BtnSmallLeft" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showhideSearchPage();">
+      <inactive s="0">
+        <img x="7" y="0" w="27" h="28">subbanner_btn_search.png</img>
+      </inactive>
+      <active s="0">
+        <img x="7" y="0" w="27" h="28">subbanner_btn_search.png</img>
+      </active>
+    </btn>
+    <btn j="802" x="66" y="49" w="41" h="29" t="BtnSmallRight" flip="None" sim="0" l="0" s="1">
+      <inactive s="0">
+        <img x="8" y="1" w="24" h="26">subbanner_btn_volume.png</img>
+      </inactive>
+      <active s="0">
+        <img x="8" y="1" w="24" h="26">subbanner_btn_volume.png</img>
+      </active>
+    </btn>
+    <btn j="803" x="957" y="49" w="42" h="29" t="BtnSmallSolo" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showLibrarySelection();">
+      <inactive s="0">
+        <img x="5" y="-2" w="32" h="32">subbanner_btn_settings.png</img>
+      </inactive>
+      <active s="0">
+        <img x="5" y="-2" w="32" h="32">subbanner_btn_settings.png</img>
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesNoLibrary" w="1024" h="768" clip="1" t="Background">
+    <txt j="0" x="0" y="90" w="1023" h="678" t="NoLibrary" wrap="False" l="0">Veuillez sélectionner une bibliothèque iTunes</txt>
+  </subpage>
+  <subpage name="iTunesCommands" w="1024" h="45" clip="1">
+    <img x="0" y="0" w="82" h="45" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">banner_background_power_off.png</img>
+    <img x="52" y="0" w="102" h="45" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">banner_background_home.png</img>
+    <img x="125" y="0" w="102" h="45" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">banner_background_remote.png</img>
+    <img x="198" y="0" w="210" h="45" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">banner_background_volume.png</img>
+    <img x="379" y="0" w="210" h="45" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">banner_background_activite_encours.png</img>
+    <img x="730" y="0" w="324" h="46" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">banner_background_date.png</img>
+    <btn j="901" x="8" y="0" w="40" h="40" t="Banner_PowerOff" flip="None" sim="0" l="0" s="1" js="Banner.stopAll();">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="902" x="80" y="0" w="40" h="40" t="Banner_Home" flip="None" sim="0" l="0" s="1">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="903" x="152" y="0" w="40" h="40" t="Banner_Remote" flip="None" sim="0" l="0" s="1">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="904" x="230" y="0" w="40" h="40" t="Banner_VolumeUp" flip="None" sim="0" l="0" s="1">
+      <actions>
+        <action>
+          <press delay="0" hold="0" repeat="50" />
+        </action>
+      </actions>
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="905" x="280" y="0" w="40" h="40" t="Banner_VolumeDown" flip="None" sim="0" l="0" s="1">
+      <actions>
+        <action>
+          <press delay="0" hold="0" repeat="50" />
+        </action>
+      </actions>
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="906" x="330" y="0" w="40" h="40" t="Banner_Mute" flip="None" sim="0" l="0" s="1">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <txt j="907" x="415" y="19" w="135" h="19" t="BannerActivity" wrap="False" l="0">Pas d'activité en cours</txt>
+    <txt j="908" x="767" y="0" w="257" h="41" t="BannerDate" wrap="False" l="0">
+    </txt>
+  </subpage>
+  <subpage name="iTunesLibrary" w="1024" h="768" clip="1">
+    <btn j="1001" x="0" y="0" w="1024" h="768" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.hideLibrarySelection();">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <img x="658" y="53" w="358" h="390" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">library-background.png</img>
+    <btn j="1002" x="956" y="92" w="30" h="30" t="AddLibrary" flip="None" sim="0" l="0" s="1" js="iTunesGUI.startPairingProcess();">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesLibraryListItem" w="316" h="49" clip="1">
+    <img x="10" y="0" w="297" h="6" j="1012" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">library-separator.png</img>
+    <btn j="1013" x="13" y="12" w="33" h="33" t="LibraryStatus" flip="None" sim="0" l="0" s="1">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <txt j="1014" x="60" y="12" w="239" h="33" t="LibraryListName" wrap="True" l="0">Nom de la bibliothèque</txt>
+    <btn j="1015" x="0" y="0" w="316" h="49" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.selectLibrary(tokens[&quot;[id]&quot;]); iTunesGUI.hideLibrarySelection();">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesLibraryEmpty" w="318" h="298" clip="1">
+    <img x="82" y="124" w="155" h="50" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">library-empty.png</img>
+  </subpage>
+  <subpage name="iTunesLibraryAdd" w="318" h="298" clip="1">
+    <img x="28" y="20" w="263" h="157" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">library-code.png</img>
+    <txt j="1025" x="38" y="191" w="242" h="83" t="LibraryAdd" wrap="True" l="0">Pour ajouter une bibliothèque iTunes, ouvrez iTunes sur vore ordinateur puis sélectionnez "XXXXX" dans la liste Appareils.</txt>
+    <img x="56" y="80" w="48" h="66" j="1021" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="1">transparent.png</img>
+    <img x="109" y="80" w="48" h="66" j="1022" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="1">transparent.png</img>
+    <img x="162" y="80" w="48" h="66" j="1023" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="1">transparent.png</img>
+    <img x="215" y="80" w="48" h="66" j="1024" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="1">transparent.png</img>
+  </subpage>
+  <subpage name="iTunesShowAlbumClose" w="1024" h="768" clip="1">
+    <img x="0" y="0" w="1024" h="768" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">noir65.png</img>
+  </subpage>
+  <subpage name="iTunesShowAlbumItem" w="491" h="38" clip="1">
+    <img x="0" y="36" w="491" h="2" j="1111" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cdcover-split.png</img>
+    <txt j="1112" x="17" y="0" w="30" h="36" t="ShowAlbumSong" wrap="False" l="0">01</txt>
+    <txt j="1113" x="45" y="0" w="400" h="36" t="ShowAlbumSong" wrap="False" l="0">Titre de la chanson</txt>
+    <txt j="1114" x="435" y="0" w="40" h="36" t="ShowAlbumDuration" wrap="False" l="0">10:35</txt>
+    <btn j="1115" x="0" y="0" w="491" h="38" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesRemote.playSongFromAlbum(tokens[&quot;[album]&quot;], tokens[&quot;[index]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesPlaylistMainItem" w="802" h="102" clip="1">
+    <img x="31" y="15" w="78" h="78" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="31" y="15" w="78" h="78" j="1201" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="1" />
+    <img x="7" y="0" w="795" h="5" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">playlist-mainsplit.png</img>
+    <img x="262" y="35" w="540" h="1" j="1213" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">playlist-songsplit.png</img>
+    <img x="262" y="68" w="540" h="1" j="1223" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">playlist-songsplit.png</img>
+    <img x="262" y="101" w="540" h="1" j="1233" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">playlist-songsplit.png</img>
+    <txt j="1211" x="300" y="3" w="430" h="32" t="PlaylistAlbumSong" wrap="False" l="0">Titre de la chanson</txt>
+    <txt j="1212" x="742" y="3" w="50" h="32" t="PlaylistAlbumDuration" wrap="False" l="0">3:35</txt>
+    <img x="27" y="11" w="86" h="86" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cdcover-overlay.png</img>
+    <txt j="1221" x="300" y="36" w="430" h="32" t="PlaylistAlbumSong" wrap="False" l="0">Titre de la chanson</txt>
+    <txt j="1222" x="743" y="36" w="50" h="32" t="PlaylistAlbumDuration" wrap="False" l="0">3:35</txt>
+    <txt j="1231" x="300" y="69" w="430" h="32" t="PlaylistAlbumSong" wrap="False" l="0">Titre de la chanson</txt>
+    <txt j="1232" x="742" y="69" w="50" h="32" t="PlaylistAlbumDuration" wrap="False" l="0">3:35</txt>
+    <txt j="1202" x="120" y="16" w="145" h="20" t="PlaylistAlbumTitle" wrap="False" l="0">Titre de l'album</txt>
+    <txt j="1203" x="120" y="36" w="145" h="20" t="PlaylistAlbumArtiste" wrap="False" l="0">Artiste</txt>
+    <btn j="1214" x="283" y="3" w="519" h="32" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesRemote.playSongFromPlaylist(tokens[&quot;[id]&quot;], tokens[&quot;[containeritemid]&quot;], tokens[&quot;[playlistid]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="1224" x="283" y="36" w="519" h="32" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesRemote.playSongFromPlaylist(tokens[&quot;[id]&quot;], tokens[&quot;[containeritemid]&quot;], tokens[&quot;[playlistid]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="1234" x="283" y="69" w="519" h="32" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesRemote.playSongFromPlaylist(tokens[&quot;[id]&quot;], tokens[&quot;[containeritemid]&quot;], tokens[&quot;[playlistid]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesPlaylistOneItem" w="802" h="33" clip="1">
+    <img x="262" y="32" w="540" h="1" j="1243" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">playlist-songsplit.png</img>
+    <txt j="1241" x="300" y="1" w="430" h="32" t="PlaylistAlbumSong" wrap="False" l="0">Titre de la chanson</txt>
+    <txt j="1242" x="743" y="1" w="50" h="32" t="PlaylistAlbumDuration" wrap="False" l="0">3:35</txt>
+    <btn j="1244" x="283" y="0" w="519" h="32" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesRemote.playSongFromPlaylist(tokens[&quot;[id]&quot;], tokens[&quot;[containeritemid]&quot;], tokens[&quot;[playlistid]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesListCoverArtistItem" w="802" h="180" clip="1">
+    <img x="645" y="12" w="128" h="128" j="1354" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="491" y="12" w="128" h="128" j="1344" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="337" y="12" w="128" h="128" j="1334" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="183" y="12" w="128" h="128" j="1324" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="29" y="12" w="128" h="128" j="1314" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="29" y="12" w="128" h="128" j="1310" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0" />
+    <img x="183" y="12" w="128" h="128" j="1320" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0" />
+    <img x="337" y="12" w="128" h="128" j="1330" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0" />
+    <img x="491" y="12" w="128" h="128" j="1340" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0" />
+    <img x="645" y="12" w="128" h="128" j="1350" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0" />
+    <img x="23" y="6" w="140" h="140" j="1315" clickthrough="1" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cover-shadow.png</img>
+    <img x="177" y="6" w="140" h="140" j="1325" clickthrough="1" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cover-shadow.png</img>
+    <img x="331" y="6" w="140" h="140" j="1335" clickthrough="1" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cover-shadow.png</img>
+    <img x="485" y="6" w="140" h="140" j="1345" clickthrough="1" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cover-shadow.png</img>
+    <img x="639" y="6" w="140" h="140" j="1355" clickthrough="1" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cover-shadow.png</img>
+    <txt j="1311" x="29" y="145" w="128" h="15" t="CoverAlbum" wrap="False" l="0">Artist</txt>
+    <txt j="1312" x="29" y="160" w="128" h="15" t="CoverArtist" wrap="False" l="0">Albums</txt>
+    <txt j="1321" x="183" y="145" w="128" h="15" t="CoverAlbum" wrap="False" l="0">Artist</txt>
+    <txt j="1322" x="183" y="160" w="128" h="15" t="CoverArtist" wrap="False" l="0">Albums</txt>
+    <txt j="1331" x="337" y="145" w="128" h="15" t="CoverAlbum" wrap="False" l="0">Artist</txt>
+    <txt j="1332" x="337" y="160" w="128" h="15" t="CoverArtist" wrap="False" l="0">Albums</txt>
+    <txt j="1341" x="491" y="145" w="128" h="15" t="CoverAlbum" wrap="False" l="0">Artist</txt>
+    <txt j="1342" x="491" y="160" w="128" h="15" t="CoverArtist" wrap="False" l="0">Albums</txt>
+    <txt j="1351" x="645" y="145" w="128" h="15" t="CoverAlbum" wrap="False" l="0">Artist</txt>
+    <txt j="1352" x="645" y="160" w="128" h="15" t="CoverArtist" wrap="False" l="0">Albums</txt>
+    <btn j="1313" x="29" y="12" w="128" h="128" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsArtist(tokens[&quot;[artist]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="1323" x="183" y="12" w="128" h="128" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsArtist(tokens[&quot;[artist]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="1333" x="337" y="12" w="128" h="128" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsArtist(tokens[&quot;[artist]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="1343" x="491" y="11" w="128" h="128" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsArtist(tokens[&quot;[artist]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="1353" x="645" y="12" w="128" h="128" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsArtist(tokens[&quot;[artist]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesArtistMainItem" w="802" h="102" clip="1">
+    <img x="31" y="15" w="78" h="78" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="31" y="15" w="78" h="78" j="1401" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="1" />
+    <img x="7" y="0" w="795" h="5" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">playlist-mainsplit.png</img>
+    <img x="262" y="35" w="540" h="1" j="1413" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">playlist-songsplit.png</img>
+    <img x="262" y="68" w="540" h="1" j="1423" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">playlist-songsplit.png</img>
+    <img x="262" y="101" w="540" h="1" j="1433" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">playlist-songsplit.png</img>
+    <txt j="1411" x="300" y="3" w="430" h="32" t="PlaylistAlbumSong" wrap="False" l="0">Titre de la chanson</txt>
+    <txt j="1412" x="742" y="3" w="50" h="32" t="PlaylistAlbumDuration" wrap="False" l="0">3:35</txt>
+    <img x="27" y="11" w="86" h="86" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cdcover-overlay.png</img>
+    <txt j="1421" x="300" y="36" w="430" h="32" t="PlaylistAlbumSong" wrap="False" l="0">Titre de la chanson</txt>
+    <txt j="1422" x="743" y="36" w="50" h="32" t="PlaylistAlbumDuration" wrap="False" l="0">3:35</txt>
+    <txt j="1431" x="300" y="69" w="430" h="32" t="PlaylistAlbumSong" wrap="False" l="0">Titre de la chanson</txt>
+    <txt j="1432" x="742" y="69" w="50" h="32" t="PlaylistAlbumDuration" wrap="False" l="0">3:35</txt>
+    <txt j="1402" x="120" y="16" w="145" h="20" t="PlaylistAlbumTitle" wrap="False" l="0">Titre de l'album</txt>
+    <txt j="1403" x="120" y="36" w="145" h="20" t="PlaylistAlbumArtiste" wrap="False" l="0">Artiste</txt>
+    <btn j="1414" x="283" y="3" w="519" h="32" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesRemote.playSongFromArtist(tokens[&quot;[artist]&quot;], tokens[&quot;[songalbumid]&quot;], tokens[&quot;[index]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="1424" x="283" y="36" w="519" h="32" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesRemote.playSongFromArtist(tokens[&quot;[artist]&quot;], tokens[&quot;[songalbumid]&quot;], tokens[&quot;[index]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="1434" x="283" y="69" w="519" h="32" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesRemote.playSongFromArtist(tokens[&quot;[artist]&quot;], tokens[&quot;[songalbumid]&quot;], tokens[&quot;[index]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesArtistOneItem" w="802" h="33" clip="1">
+    <img x="262" y="32" w="540" h="1" j="1443" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">playlist-songsplit.png</img>
+    <txt j="1441" x="300" y="1" w="430" h="32" t="PlaylistAlbumSong" wrap="False" l="0">Titre de la chanson</txt>
+    <txt j="1442" x="743" y="1" w="50" h="32" t="PlaylistAlbumDuration" wrap="False" l="0">3:35</txt>
+    <btn j="1444" x="283" y="0" w="519" h="32" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesRemote.playSongFromArtist(tokens[&quot;[artist]&quot;], tokens[&quot;[songalbumid]&quot;], tokens[&quot;[index]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesSongItem" w="802" h="33" clip="1">
+    <img x="8" y="32" w="794" h="1" j="1501" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">songs-separator.png</img>
+    <txt j="1502" x="30" y="0" w="230" h="32" t="PlaylistAlbumSong" wrap="False" l="0">Titre de la chanson</txt>
+    <txt j="1505" x="720" y="1" w="40" h="32" t="PlaylistAlbumDuration" wrap="False" l="0">3:35</txt>
+    <txt j="1503" x="260" y="0" w="230" h="32" t="SongInfo" wrap="False" l="0">Titre de l'album</txt>
+    <txt j="1504" x="490" y="0" w="230" h="32" t="SongInfo" wrap="False" l="0">Titre de l'album</txt>
+    <btn j="1506" x="24" y="0" w="778" h="32" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesRemote.playSongFromLibrary(tokens[&quot;[index]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesSongLetter" w="802" h="20" clip="1">
+    <img x="8" y="0" w="794" h="20" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">song-titlebackground.png</img>
+    <txt j="1502" x="54" y="1" w="748" h="18" t="SongTitleLetter" wrap="False" l="0">Text</txt>
+  </subpage>
+  <subpage name="iTunesShowAlbum" w="1024" h="768" clip="1">
+    <img x="269" y="91" w="755" h="603" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cdcover-back.png</img>
+    <btn j="1102" x="0" y="0" w="1024" h="768" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.hideSongsAlbum();">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <txt j="1104" x="405" y="146" w="400" h="40" t="ShowAlbumTitle" wrap="False" l="0">Nom de l'album</txt>
+    <txt j="1105" x="405" y="186" w="400" h="28" t="ShowAlbumArtiste" wrap="False" l="0">Artiste</txt>
+    <txt j="1106" x="332" y="239" w="456" h="20" t="ShowAlbumDescr" wrap="False" l="0">Date - Nombre de pistes - Durée</txt>
+    <img x="315" y="139" w="78" h="78" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="315" y="139" w="78" h="78" j="1103" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="1" />
+    <img x="311" y="135" w="86" h="86" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cdcover-overlay.png</img>
+    <list j="1110" x="317" y="263" w="491" h="369" headerSub="" titleSub="" contentSub="iTunesShowAlbumItem" footerSub="" orientation="v" l="0" swipedelete="0" />
+    <img x="259" y="115" w="648" h="553" j="0" clickthrough="1" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">cdcover-front.png</img>
+  </subpage>
+  <subpage name="iTunesLibraryList" w="318" h="298" clip="1">
+    <list j="1011" x="1" y="0" w="316" h="298" headerSub="" titleSub="" contentSub="iTunesLibraryListItem" footerSub="" orientation="v" l="0" swipedelete="0" />
+  </subpage>
+  <subpage name="iTunesMainPage" w="1024" h="768" clip="1">
+    <img x="222" y="95" w="802" h="610" j="399" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">inprogress.png</img>
+    <list j="1500" x="222" y="95" w="762" h="610" headerSub="" titleSub="iTunesSongLetter" contentSub="iTunesSongItem" footerSub="" orientation="v" l="1" swipedelete="0" />
+    <list j="1600" x="222" y="95" w="802" h="610" headerSub="" titleSub="iTunesSearchType" contentSub="" footerSub="" orientation="v" l="0" swipedelete="0" />
+    <list j="1300" x="222" y="95" w="802" h="610" headerSub="" titleSub="" contentSub="iTunesListCoverArtistItem" footerSub="" orientation="v" l="0" swipedelete="0" />
+    <img x="7" y="95" w="207" h="673" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">list_background.png</img>
+    <list j="400" x="7" y="95" w="207" h="470" headerSub="" titleSub="" contentSub="iTunesListBDDItem" footerSub="" orientation="v" l="0" swipedelete="0" />
+    <img x="0" y="0" w="221" h="768" j="0" clickthrough="1" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">list_overlay.png</img>
+    <list j="500" x="222" y="95" w="802" h="610" headerSub="" titleSub="" contentSub="iTunesListCoverAlbumItem" footerSub="" orientation="v" l="1" swipedelete="0" />
+    <img x="0" y="695" w="1024" h="60" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">bottom_banner_background.png</img>
+    <img x="29" y="590" w="163" h="163" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <img x="29" y="590" w="163" h="163" j="601" clickthrough="0" refresh="0" l="0" noCache="1" downloadIndicator="0" clearOnURLChange="0" />
+    <img x="14" y="575" w="193" h="193" j="0" clickthrough="1" refresh="0" l="1" noCache="0" downloadIndicator="0" clearOnURLChange="0">bottom_banner_album_overlay.png</img>
+    <txt j="603" x="688" y="705" w="37" h="41" t="TimeCurrentPlayRight" wrap="False" l="0">00:00</txt>
+    <txt j="605" x="966" y="705" w="37" h="41" t="TimeCurrentPlayLeft" wrap="False" l="0">-99:99</txt>
+    <txt j="602" x="214" y="705" w="394" h="40" t="CurrentPlay" wrap="False" l="0">Album - Chanson</txt>
+    <btn j="606" x="658" y="715" w="25" h="21" t="BtnSuffle" flip="None" sim="2" l="0" s="1" js="iTunesGUI.shuffleBtn(join);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="607" x="618" y="715" w="25" h="21" t="BtnRepeatOff" flip="None" sim="0" l="0" s="1" js="iTunesGUI.repeatBtn(join);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="608" x="80" y="683" w="60" h="61" t="BtnPlayPause" flip="None" sim="2" l="0" s="1" js="iTunesGUI.playPauseBtn(join);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="610" x="150" y="696" w="34" h="35" t="BtnForward" flip="None" sim="0" l="0" s="1" js="iTunesGUI.nextBtn(join);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <btn j="609" x="38" y="696" w="34" h="35" t="BtnBack" flip="None" sim="0" l="0" s="1" js="iTunesGUI.backBtn(join);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <slider j="604" d="604" x="739" y="719" w="216" h="12" min="0" max="100" decimals="0" releaseCmd="ProgressBar" unit="decimal" t="ItemProgress" sim="1" l="0">
+      <indicator state="0" offsetX="0" offsetY="0" x="0" y="0" w="0" h="0" t="">transparent20.png</indicator>
+      <indicator state="1" offsetX="0" offsetY="0" x="0" y="0" w="0" h="0" t="">transparent20.png</indicator>
+    </slider>
+    <list j="1200" x="222" y="95" w="802" h="610" headerSub="" titleSub="iTunesPlaylistMainItem" contentSub="iTunesPlaylistOneItem" footerSub="" orientation="v" l="0" swipedelete="0" />
+    <list j="1400" x="222" y="95" w="802" h="610" headerSub="" titleSub="iTunesArtistMainItem" contentSub="iTunesArtistOneItem" footerSub="" orientation="v" l="1" swipedelete="0" />
+    <slider j="1520" d="0" x="984" y="95" w="40" h="610" min="1" max="27" decimals="0" pressCmd="LettersSlider" dragCmd="LettersSlider" unit="decimal" t="Letters" invert="1" sim="0" l="0" />
+  </subpage>
+  <subpage name="iTunesSearchType" w="802" h="20" clip="1">
+    <img x="8" y="0" w="794" h="20" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">song-titlebackground.png</img>
+    <txt j="1601" x="54" y="1" w="748" h="18" t="SongTitleLetter" wrap="False" l="0">Text</txt>
+  </subpage>
+  <subpage name="iTunesSearchItemAlbum" w="802" h="59" clip="1">
+    <img x="36" y="1" w="56" h="56" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">search-overlay.png</img>
+    <img x="8" y="58" w="794" h="1" j="1610" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">songs-separator.png</img>
+    <txt j="1612" x="110" y="9" w="640" h="20" t="PlaylistAlbumSong" wrap="False" l="0">Titre de l'album</txt>
+    <txt j="1613" x="110" y="29" w="640" h="20" t="SongInfo" wrap="False" l="0">Nom de l'artiste</txt>
+    <btn j="1614" x="23" y="0" w="779" h="59" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsAlbum(tokens[&quot;[id]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <img x="39" y="4" w="50" h="50" j="1611" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+  </subpage>
+  <subpage name="iTunesSearchItemArtist" w="802" h="59" clip="1">
+    <img x="36" y="1" w="56" h="56" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">search-overlay.png</img>
+    <img x="8" y="58" w="794" h="1" j="1620" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">songs-separator.png</img>
+    <txt j="1622" x="110" y="9" w="640" h="40" t="PlaylistAlbumSong" wrap="False" l="0">Nom de l'artiste</txt>
+    <img x="39" y="4" w="50" h="50" j="1621" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+    <btn j="1624" x="23" y="0" w="779" h="59" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesGUI.showSongsArtist(tokens[&quot;[artist]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+  </subpage>
+  <subpage name="iTunesSearchItemSong" w="802" h="59" clip="1">
+    <img x="36" y="1" w="56" h="56" j="0" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">search-overlay.png</img>
+    <img x="8" y="58" w="794" h="1" j="1630" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">songs-separator.png</img>
+    <txt j="1632" x="110" y="9" w="640" h="20" t="PlaylistAlbumSong" wrap="False" l="0">Titre de la chanson</txt>
+    <txt j="1633" x="110" y="29" w="640" h="20" t="SongInfo" wrap="False" l="0">Nom de l'artiste</txt>
+    <btn j="1634" x="23" y="0" w="779" h="59" t="Transparent" flip="None" sim="0" l="0" s="1" js="iTunesRemote.playSearchSong(tokens[&quot;[query]&quot;], tokens[&quot;[index]&quot;]);">
+      <inactive s="0">
+      </inactive>
+      <active s="0">
+      </active>
+    </btn>
+    <img x="39" y="4" w="50" h="50" j="1631" clickthrough="0" refresh="0" l="0" noCache="0" downloadIndicator="0" clearOnURLChange="0">emptycover.png</img>
+  </subpage>
+</gui>
